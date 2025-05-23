@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>From:</td>
+            <td>
+                <input type="text" name="txt" id="InputTxt">
+            </td>
+        </tr>
+        <tr>
+            <td>To</td>
+            <td>
+                <select name="OptionsName" id="To" onclick="Info()">
+
+                </select>
+            </td>
+        </tr>
+    </table>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            alert('ready');
+            $('#To').click(() => {
+
+                var url = "http://localhost:9000/Display?form=" + $('#InputTxt').val();
+                $.get(url, (data, status) => {
+                    if (status === 'success') {
+                        var names = JSON.parse(data);
+                        str = "";
+                        for (i = 0; i < names.length; i++) {
+                            str += `<option>${names[i].ENAME}</option>`;
+                        }
+
+                        $('#To').html(str);
+
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

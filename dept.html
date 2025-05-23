@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            emp form
+        </title>
+        <script src="jquery-3.7.1.min.js"></script>
+       
+    </head>
+    <body>
+    <form action="" method="get">
+        Enter deptno :
+        <input type="number" name="deptno" id="deptno" />
+        <br/>
+        <input type="button" value="SHOW"  id="b1"/> 
+    </form>
+    <br/>
+    <div id="greet"></div>
+     <script>
+            $(document).ready(function()
+            {
+                alert("ready");
+                $("#b1").click(function() {
+                var deptno = $("#deptno").val();
+                    var url = "http://localhost:9000/dept?deptno=" + deptno;
+                    $.get(url, function(data, s) {
+                        if(s == "success")
+                            $("#greet").html(data);
+                })
+            })
+        })
+        </script>
+</body>
+
+</html>

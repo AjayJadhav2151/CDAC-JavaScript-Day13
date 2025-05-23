@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <form action="" method="get">
+        <label>Enter Empno:</label>
+        <input type="number" name="empno" id="empno"/>
+        <input type="button" value="Check"  id="btn"/>
+    </form>
+    <div id="greet"></div>
+
+    <script>
+        $(document).ready(function(){
+            $("#btn").click(function(){
+                var eno = $("#empno").val();
+                var url = "http://localhost:9000/greet?empno="+eno;
+                $.get(url,function(data,s){
+                    if(s=="success")
+                    $("#greet").html(data)
+                })
+            })
+        })
+    </script>
+</body>
+</html>
